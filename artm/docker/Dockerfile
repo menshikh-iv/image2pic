@@ -23,17 +23,26 @@ ENV ARTM_SHARED_LIBRARY=/bigartm/build/src/artm/libartm.so
 
 RUN pip install --upgrade pip && pip install --no-cache-dir --no-cache pandas numpy nltk pymorphy2 zmq
 
-RUN mkdir /data
-ADD dict.filtered /data
-ADD big_model.artm.mtx /data
-ADD insception-classes.tsv /data
+RUN mkdir /models
+ADD big_model.artm.mtx /models
+RUN mkdir /resourses
+ADD insception-classes.tsv /resourses
 
 RUN mkdir /code
 ADD model_application.py /code
 ADD utils.py /code
 
+ARG zmq_port=1349
+ARG loglevel=20
+ARG logfile=artm.log
+
+ENV LOGLEVEL=${loglevel}
+ENV LOGFILE=${logfile}
+ENV ZMQPORT=${zmq_port}
+
+RUN mkdir /data
 WORKDIR /code
 
-EXPOSE 1349
+EXPOSE ${zmq_port}
 
 ENTRYPOINT python model_application.py

@@ -1,0 +1,20 @@
+version: "2"
+services:
+  webapp:
+    build: webapp/
+    ports:
+     - "80:80"
+    container_name: image2pic-webapp
+
+  inception-v3:
+    build: nn/
+    ports:
+     - "1350:1350"
+    container_name: image2pic-inception-v3
+
+
+  artm-service:
+    image: shtechgen/annotator_artm:newapi
+    ports:
+     - "1349:1349"
+    container_name: image2pic-artm-service

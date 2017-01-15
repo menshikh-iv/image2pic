@@ -42,8 +42,7 @@ def get_text_processor():
                 yield stemmer.stem(token)
     return inner
 
-def sample_from(vector):
-    try:
+def apply_box_cox(vector):
         v = np.asarray(vector).copy()
         v[np.where(v!=0)] = np.log(v[np.where(v!=0)]) # dont ask. some kind of box-cox transformation magic
         v[np.where(v!=0)] = v[np.where(v!=0)] / v[np.where(v!=0)].sum()
@@ -53,13 +52,18 @@ def sample_from(vector):
         
         v = vector.reshape(-1)+v.reshape(-1)*3 # just help trasformation by multy3 for more stable sampling
         v = v/v.sum()
+        return v
+
+def sample_from(vector):
+    try:
+        v = apply_box_cox(vector)
         return Counter(dict((k, v) for k,v in enumerate(np.random.multinomial(144, v.reshape(-1)*0.99999)) if v > 0))
     except Exception as e:
         print vector.sum(), e
 
 once_awared = set()
 
-def to_vw(row, key='img_url', fields=['tag', 'text', 'classes']):
+def to_vw(row, key='id', fields=['tag', 'text', 'classes']):
     line = '%s '%row[key][len('https://'):]
         
     for field in fields:

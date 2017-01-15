@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% include 'header.html' %}
+<link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+<body>
+{% include 'menu.html' %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Annotator</h1>
+        <h3>введите текст</h3>
+        <form method="post" action="/processing" id="dataform" enctype="multipart/form-data">
+            <input name="search_text" class="form-control input-lg" id="myInput" placeholder="Где же котлета?" type="text">
+            <h3>и/или прикрепите изображение</h3>
+            <span class="btn btn-default btn-file">
+                Загрузить<input type="file" name="photo_img" id="photo_img" value="">
+            </span>
+            <h3>
+                <button class="btn btn-primary" type="submit">Дай мне чего нибудь</button>
+            </h3>
+        </form>
+    </div>
+
+</div> <!-- /container -->
+</body>
+<!--script src="static/js/script.js" type="text/javascript"></script!-->
+</html>

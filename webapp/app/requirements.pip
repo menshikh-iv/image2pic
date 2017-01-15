@@ -1,0 +1,5 @@
+uwsgi
+flask
+numpy
+scipy
+zmq

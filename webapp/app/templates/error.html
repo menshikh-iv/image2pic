@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% include 'header.html' %}
+<body>
+{% include 'menu.html' %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Ошибка</h1>
+        <p>Что-то пошло не так, не ответил сервис "{% if error_text %}
+                                                        {{error_text}}
+                                                   {% endif %}"
+    </div>
+    <div>
+</body>
+</html>

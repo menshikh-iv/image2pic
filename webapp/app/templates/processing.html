@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% include 'header.html' %}
+<link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+<body>
+{% include 'menu.html' %}
+
+<div class="container">
+    <center><h1>Что вы нам дали</h1></center>
+    <br/>
+
+     <table class="table">
+        <thead>
+          <tr>
+            <th>Поле</th>
+            <th>Значение</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Текст</td>
+            <td>{{ query_text }}</td>
+        </tr>
+        <tr>
+            <td>Изображение</td>
+            <td>{% if img_data %}
+                    <img src="data:image/png;base64,{{img_data}}"/>
+                {% endif %}
+            </td>
+        </tr>
+        </tbody>
+     </table>
+    <br/>
+    <center><h1> Что у нас есть </h1></center>
+    <br/>
+    <h2> ARTM </h2>
+     <table class="table">
+        <thead>
+          <tr>
+            <th>Поле</th>
+            <th>Значение</th>
+          </tr>
+        </thead>
+        <tbody>
+        {%  for k in data %}
+        <tr>
+            <td>{{ k }}</td>
+            <td>{{ data[k] }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+     </table>
+    <br/>
+    <h2> TOP10 похожих </h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Расстояние</th>
+                <th>Текст</th>
+                <th>Теги</th>
+                <th>Изображение</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for _ in srch %}
+            <tr>
+                <td>{{ _["dist"] }}</td>
+                <td>{{ _["text"] }}</td>
+                <td>{{ _["tag"] }}</td>
+                <td><img src="{{_["img_url"]}}"/></td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+     </table>
+</div>
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 ## Image topic modeling.
 
-We are two students: Ivan Menshikh && Gennady Shtekh.
+We are two students: [Ivan Menshikh](https://github.com/menshikh-iv) && [Gennady Shtekh](https://github.com/ShT3ch).
 This repo is created to complete project assignment for one of master degree courses in IMCS UrFU.
 The idea of the project was to use pictures from some social network in some parallel way. We decided to create search-annotation engine based on cutting edge topic modeling technique called Additive Regularization of Topic Models(ARTM).
 Long story short: ARTM allows us to tie different discrete features of "documents" together, e.g. text tokens, some hashtags and discrete image descriptors can be used for describing of one post in a social network. With ARTM it is possible to find a stochastic-matrix-based connection between text tokens and discreet image descriptors. We use this feature for:
@@ -12,7 +12,7 @@ Long story short: ARTM allows us to tie different discrete features of "document
 
 The Plan:
  - [ ] To collect posts with photo and text description(long enough)
- - [ ] Clean it from ad posts
+ - [ ] Clean them from ad posts
  - [ ] Find a way to build discrete image descriptors(based on inception-v3 now)
  - [ ] Build a textual preprocessing pipeline(based on nltk, pymorphy2 and some custom solutions, now it supports english and russian via stemming)
  - [ ] Combine text and image date together with topic modeling framework called BigARTM
@@ -25,6 +25,7 @@ The Plan:
 
 
 ## Links:
- - [ARTM papers](https://s3-eu-west-1.amazonaws.com/artm/Voron15aist.pdf)
+ - [ARTM paper](https://s3-eu-west-1.amazonaws.com/artm/Voron15aist.pdf)
+ - [More ARTM papers](https://github.com/bigartm/bigartm/wiki/Publications)
  - [BigARTM](https://github.com/bigartm/bigartm)
  - [Inception keras-based implementation](https://keras.io/applications/)

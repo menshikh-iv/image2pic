@@ -1,0 +1,2 @@
+models/big_model.artm.mtx filter=lfs diff=lfs merge=lfs -text
+workspace/bigartm-0.8.2-py2.7.egg filter=lfs diff=lfs merge=lfs -text

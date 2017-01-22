@@ -1,0 +1,5 @@
+.idea
+.ipynb_checkpoints
+artm/workspace/bigartm*
+*.log
+*.pyc

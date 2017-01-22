@@ -3,6 +3,7 @@ import json
 import logging
 import random
 import numpy as np
+import plotly
 from scipy.spatial.distance import cdist
 import zmq
 from flask import Flask, render_template, request, redirect
@@ -85,6 +86,17 @@ def processing():
 
     full_data.pop("img_url", None)
     logging.info(full_data['modalities']['classes'])
+    topic_bar = dict(
+        data=[
+            dict(
+                 x=range(len(full_data["topics"])),
+                 y=full_data["topics"],
+            )
+        ],
+        layout=dict(
+            "artm-topics"
+        )
+    )
 
     distances = sorted(zip(range(len(index_matr)),
                            cdist(index_matr, np.array([full_data["topics"]]), 'cosine')),
@@ -112,7 +124,8 @@ def processing():
     return render_template("processing.html", query_text=txt,
                            img_data=base64.b64encode(img) if img else None,
                            data=full_data,
-                           srch=near_obj)
+                           srch=near_obj,
+                           artm_topics=json.dumps(topic_bar, cls=plotly.utils.PlotlyJSONEncoder))
 
 
 @app.route('/processing', methods=["GET"])

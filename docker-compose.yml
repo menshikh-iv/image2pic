@@ -18,7 +18,12 @@ services:
 
 
   artm-service:
-    build: artm/docker
+    build:
+      context: artm/docker
+      args:
+       - loglevel=20
+       - zmq_port=1349
+       - logfile=artm.log
     ports:
      - "1349:1349"
     container_name: image2pic-artm-service

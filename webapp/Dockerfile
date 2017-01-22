@@ -8,7 +8,7 @@ RUN pip install --upgrade pip
 RUN pip install uwsgi flask numpy scipy zmq
 
 COPY app /var/www/app
-COPY site.conf /etc/nginx/sites-available/
+COPY site-dev.conf /etc/nginx/sites-available/site.conf
 COPY supervisord.conf /etc/supervisor/conf.d/
 
 RUN mkdir -p /var/log/nginx/app /var/log/uwsgi/app /var/log/supervisor && \

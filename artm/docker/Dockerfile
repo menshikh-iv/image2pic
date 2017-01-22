@@ -7,6 +7,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN pip install --upgrade pip && pip install --no-cache-dir --no-cache pandas numpy nltk pymorphy2 zmq
+
 RUN git clone --branch=stable https://github.com/bigartm/bigartm.git &&\
 	cd bigartm && git checkout v0.8.1 &&\
 	mkdir build && \
@@ -20,8 +22,6 @@ RUN cd bigartm/3rdparty/protobuf/python && \
 RUN cd bigartm/python && \
 	python setup.py install
 ENV ARTM_SHARED_LIBRARY=/bigartm/build/src/artm/libartm.so
-
-RUN pip install --upgrade pip && pip install --no-cache-dir --no-cache pandas numpy nltk pymorphy2 zmq
 
 RUN mkdir /models
 ADD big_model.artm.mtx /models

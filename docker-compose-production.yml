@@ -14,9 +14,10 @@ services:
     extends:
       file: docker-compose-basic.yml
       service: webapp
-      ports:
-       - "443:443"
-      volumes:
-       - "/etc/letsencrypt/live/image2pic.tech/fullchain.pem:/etc/ssl/cert.pem"
-       - "/etc/letsencrypt/live/image2pic.tech/privkey.pem:/etc/ssl/domain.key"
-       - "webapp/site-prod.conf:/etc/nginx/sites-available/site.conf"
+    volumes:
+     - "/etc/letsencrypt/live/image2pic.tech/fullchain.pem:/etc/ssl/cert.pem:ro"
+     - "/etc/letsencrypt/live/image2pic.tech/privkey.pem:/etc/ssl/domain.key:ro"
+     - "./webapp/site-prod.conf:/etc/nginx/sites-available/site.conf:ro"
+    ports:
+     - "443:443"
+

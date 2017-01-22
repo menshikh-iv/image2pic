@@ -18,7 +18,7 @@ services:
 
 
   artm-service:
-    image: shtechgen/annotator_artm:newapi
+    image: artm/docker
     ports:
      - "1349:1349"
     container_name: image2pic-artm-service

@@ -5,7 +5,8 @@ RUN apt-get update && \
     apt-get install -y nginx supervisor python-dev python-pip uwsgi-plugin-python uwsgi-plugin-python libzmq-dev
 
 RUN pip install --upgrade pip
-RUN pip install uwsgi flask numpy scipy zmq
+RUN pip install uwsgi flask numpy scipy zmq plotly
+
 
 COPY app /var/www/app
 COPY site.conf /etc/nginx/sites-available/

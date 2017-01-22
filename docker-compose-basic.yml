@@ -3,12 +3,8 @@ services:
   webapp:
     build: webapp/
     ports:
-     - "443:443"
      - "80:80"
     container_name: image2pic-webapp
-    volumes:
-     - "/etc/letsencrypt/live/image2pic.tech/fullchain.pem:/etc/ssl/cert.pem"
-     - "/etc/letsencrypt/live/image2pic.tech/privkey.pem:/etc/ssl/domain.key"
 
   inception-v3:
     build: nn/

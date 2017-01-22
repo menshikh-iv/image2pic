@@ -4,6 +4,7 @@ services:
     build: webapp/
     ports:
      - "443:443"
+     - "80:80"
     container_name: image2pic-webapp
     volumes:
      - "/etc/letsencrypt/live/image2pic.tech/fullchain.pem:/etc/ssl/cert.pem"

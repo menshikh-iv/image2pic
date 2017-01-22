@@ -59,7 +59,7 @@ def processing():
     to_artm = {"id": "https://{}".format(random.randint(10 ** 5, 10 ** 10))}
 
     if txt.strip():
-        to_artm["raw_text"] = txt
+        to_artm["text"] = txt
 
     if preds:
         to_artm["classes"] = preds

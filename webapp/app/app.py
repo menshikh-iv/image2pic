@@ -5,7 +5,7 @@ import random
 import numpy as np
 from scipy.spatial.distance import cdist
 import zmq
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, redirect
 
 
 TIMEOUT_MS = 10000
@@ -113,6 +113,11 @@ def processing():
                            img_data=base64.b64encode(img) if img else None,
                            data=full_data,
                            srch=near_obj)
+
+
+@app.route('/processing', methods=["GET"])
+def go_to_index():
+    return redirect('/')
 
 
 @app.route('/', methods=["GET"])

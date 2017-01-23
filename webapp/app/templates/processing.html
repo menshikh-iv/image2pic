@@ -46,7 +46,7 @@
         {%  for k in data %}
         <tr>
             <td>{{ k }}</td>
-            <td>{{ data[k] }}</td>
+            <td>{{ data[k] | safe}}</td>
         </tr>
         {% endfor %}
 

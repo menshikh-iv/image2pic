@@ -87,7 +87,6 @@ def processing():
         return render_template("error.html", error_text="artm service")
 
     artm_data.pop("img_url", None)
-    logging.info(artm_data['modalities']['classes'])
     distances = sorted(zip(range(len(index_matr)),
                            cdist(index_matr, np.array([artm_data["topics"]]), 'cosine')),
                        key=lambda (_, d): d,
@@ -164,6 +163,29 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+
+@app.route("/info")
+def info():
+    context = zmq.Context()
+
+    sc = context.socket(zmq.REQ)
+    sc.connect('tcp://image2pic-artm-service:{}'.format(ARTM_PORT))
+    sc.setsockopt(zmq.LINGER, TIMEOUT_MS)
+    artm_poller = zmq.Poller()
+    artm_poller.register(sc, zmq.POLLIN)
+
+    sc.send_json({"command": "info"})
+    if artm_poller.poll(TIMEOUT_MS):
+        logging.info("artm poll ok, recv")
+        artm_info = sc.recv_json()
+
+    else:
+        logging.info("fail polling")
+        return render_template("error.html", error_text="artm service (info)")
+
+    return render_template("info.html", artm_info=artm_info)
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80)

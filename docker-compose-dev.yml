@@ -6,6 +6,9 @@ services:
       service: inception-v3
 
   artm-service:
+    build:
+      args:
+        - loglevel=0
     extends:
       file: docker-compose-basic.yml
       service: artm-service

@@ -198,5 +198,10 @@ def info():
     return render_template("info.html", artm_info=artm_info)
 
 
+@app.route("/thanks")
+def ty():
+    return render_template("ty.html")
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80)

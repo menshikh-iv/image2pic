@@ -80,7 +80,11 @@ def processing():
 
     if artm_poller.poll(TIMEOUT_MS):
         logging.info("artm poll ok, recv")
-        artm_data, = artm_socket.recv_json()
+        artm_data = artm_socket.recv_json()
+        if artm_data["status"] != "ok":
+            return render_template("error.html", error_text="artm service ({}: {})".format(artm_data["status"],
+                                                                                           artm_data["response"]))
+        artm_data, = artm_data["response"]
 
     else:
         logging.info("fail polling")

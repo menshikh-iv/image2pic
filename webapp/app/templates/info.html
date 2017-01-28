@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% include 'header.html' %}
+<body>
+{% include 'menu.html' %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>ARTM-meta</h1>
+    </div>
+
+    <h2> Регуляризаторы </h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Имя регуляризатора</th>
+                <th>Тип регуляризатора</th>
+                <th>τ</th>
+            </tr>
+        </thead>
+        <tbody>
+        {%  for _ in artm_info['regularizers'] %}
+        <tr>
+            <td>{{ _["reg_name"] }}</td>
+            <td>{{ _["reg_type"] }}</td>
+            <td>{{ _["tau_coef"] }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <h2> Модальности </h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Тема</th>
+                <th>Токены (текст)</th>
+                <th>Токены (нейросеть)</th>
+                <th>Теги</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for topic_name in artm_info["topics"] %}
+            <tr>
+                <td>{{ topic_name }}</td>
+                <td>{{ artm_info["modalities_desc"]["text"][topic_name] }}</td>
+                <td>{{ artm_info["modalities_desc"]["classes"][topic_name] }}</td>
+                <td>{{ artm_info["modalities_desc"]["tag"][topic_name] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

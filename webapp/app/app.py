@@ -1,11 +1,14 @@
+# coding=utf-8
 import base64
 import json
 import logging
 import random
 import numpy as np
+import plotly.offline as py
+import plotly.graph_objs as go
 from scipy.spatial.distance import cdist
 import zmq
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, redirect
 
 
 TIMEOUT_MS = 10000
@@ -77,17 +80,16 @@ def processing():
 
     if artm_poller.poll(TIMEOUT_MS):
         logging.info("artm poll ok, recv")
-        full_data, = artm_socket.recv_json()
+        artm_data, = artm_socket.recv_json()
 
     else:
         logging.info("fail polling")
         return render_template("error.html", error_text="artm service")
 
-    full_data.pop("img_url", None)
-    logging.info(full_data['modalities']['classes'])
-
+    artm_data.pop("img_url", None)
+    logging.info(artm_data['modalities']['classes'])
     distances = sorted(zip(range(len(index_matr)),
-                           cdist(index_matr, np.array([full_data["topics"]]), 'cosine')),
+                           cdist(index_matr, np.array([artm_data["topics"]]), 'cosine')),
                        key=lambda (_, d): d,
                        reverse=False)
     distances = distances[:10]
@@ -101,18 +103,37 @@ def processing():
         q["img_url"] = dataset[idx]["img_url"]
         near_obj.append(q)
 
-    for key in full_data:
-        if isinstance(full_data[key], list):
-            full_data[key] = u", ".join(unicode(_) for _ in full_data[key])
+    fd = {u"Темы": py.plot([go.Bar(x=range(len(artm_data["topics"])),
+                                   y=artm_data["topics"])],
+                                   include_plotlyjs=False, output_type='div')}
 
-        elif isinstance(full_data[key], dict):
-            full_data[key] = u", ".join(u"{} - {}".format(name, cnt) for (name, cnt) in
-                                        sorted(full_data[key].items(), key=lambda (_, cnt): cnt, reverse=True))
+    if artm_data.get("view", None):
+        fd[u"Токены"] = u", ".join(unicode(_) for _ in artm_data["view"])
+
+    if artm_data["modalities"].get("text", None):
+        fd[u"Модальность[текст]"] = py.plot([go.Bar(x=[w for (w, _) in artm_data["modalities"]["text"]],
+                                                    y=[val for (_, val) in artm_data["modalities"]["text"]])],
+                                                    include_plotlyjs=False, output_type='div')
+
+    if artm_data["modalities"].get("classes", None):
+        fd[u"Модальность[нейросеть]"] = py.plot([go.Bar(x=[w for (w, _) in artm_data["modalities"]["classes"]],
+                                                        y=[val for (_, val) in artm_data["modalities"]["classes"]])],
+                                                        include_plotlyjs=False, output_type='div')
+
+    if artm_data["modalities"].get("tag", None):
+        fd[u"Модальность[хештеги]"] = py.plot([go.Bar(x=[w for (w, _) in artm_data["modalities"]["tag"]],
+                                                      y=[val for (_, val) in artm_data["modalities"]["tag"]])],
+                                                      include_plotlyjs=False, output_type='div')
 
     return render_template("processing.html", query_text=txt,
                            img_data=base64.b64encode(img) if img else None,
-                           data=full_data,
+                           data=fd,
                            srch=near_obj)
+
+
+@app.route('/processing', methods=["GET"])
+def go_to_index():
+    return redirect('/')
 
 
 @app.route('/', methods=["GET"])

@@ -1,0 +1,23 @@
+version: "2"
+services:
+  inception-v3:
+    extends:
+      file: docker-compose-basic.yml
+      service: inception-v3
+
+  artm-service:
+    extends:
+      file: docker-compose-basic.yml
+      service: artm-service
+
+  webapp:
+    extends:
+      file: docker-compose-basic.yml
+      service: webapp
+    volumes:
+     - "/etc/letsencrypt/live/image2pic.tech/fullchain.pem:/etc/ssl/cert.pem:ro"
+     - "/etc/letsencrypt/live/image2pic.tech/privkey.pem:/etc/ssl/domain.key:ro"
+     - "./webapp/site-prod.conf:/etc/nginx/sites-available/site.conf:ro"
+    ports:
+     - "443:443"
+

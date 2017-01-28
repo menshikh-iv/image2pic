@@ -1,0 +1,16 @@
+version: "2"
+services:
+  inception-v3:
+    extends:
+      file: docker-compose-basic.yml
+      service: inception-v3
+
+  artm-service:
+    extends:
+      file: docker-compose-basic.yml
+      service: artm-service
+
+  webapp:
+    extends:
+      file: docker-compose-basic.yml
+      service: webapp

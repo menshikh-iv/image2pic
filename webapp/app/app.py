@@ -1,5 +1,6 @@
 # coding=utf-8
 import base64
+import os
 import json
 import logging
 import random
@@ -8,7 +9,8 @@ import plotly.offline as py
 import plotly.graph_objs as go
 from scipy.spatial.distance import cdist
 import zmq
-from flask import Flask, render_template, request, redirect
+import markdown
+from flask import Flask, render_template, request, redirect, Markup
 
 
 TIMEOUT_MS = 10000
@@ -19,7 +21,7 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(message)s',
                     datefmt='%m-%d %H:%M:%S')
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates/")
 
 logging.info("Load topic vectors to memory")
 
@@ -93,7 +95,7 @@ def processing():
     artm_data.pop("img_url", None)
     distances = sorted(zip(range(len(index_matr)),
                            cdist(index_matr, np.array([artm_data["topics"]]), 'cosine')),
-                       key=lambda (_, d): d,
+                       key=lambda (_, dst): dst,
                        reverse=False)
     distances = distances[:10]
 
@@ -166,7 +168,11 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    with open(os.path.join(app.template_folder, "about.md")) as infile:
+        md = infile.read()
+
+    content = Markup(markdown.markdown(md.decode("utf-8")))
+    return render_template('about.html', content=content)
 
 
 @app.route("/info")

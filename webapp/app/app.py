@@ -13,7 +13,7 @@ import markdown
 from flask import Flask, render_template, request, redirect, Markup
 
 
-TIMEOUT_MS = 10000
+TIMEOUT_MS = 5000
 ARTM_PORT = 1349
 NN_PORT = 1350
 
@@ -109,7 +109,8 @@ def processing():
         near_obj.append(q)
 
     field_name = u"Темы"
-    fd = {field_name: py.plot([go.Bar(x=range(len(artm_data["topics"])), y=artm_data["topics"])],
+    fd = {field_name: py.plot([go.Bar(x=range(len(artm_data["topics"])),
+                                      y=artm_data["topics"], text=artm_data["topics_desc"])],
                               include_plotlyjs=False, output_type='div')}
     fd_ord = [field_name]
 

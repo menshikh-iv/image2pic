@@ -20,9 +20,9 @@ ARTM_PORT = 1349
 NN_PORT = 1350
 
 USER_POST_LOCK = Lock()
-USER_LIKE_LOCK = Lock()
+USER_VOTE_LOCK = Lock()
 USER_POST_FILE = "/var/log/webapp-post.json"
-USER_LIKE_FILE = "/var/log/webapp-like.json"
+USER_VOTE_FILE = "/var/log/webapp-vote.json"
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(message)s',
@@ -41,10 +41,28 @@ index_matr = np.array([_["topics"] for _ in dataset])
 def save_post_data(txt, img):
     with USER_POST_LOCK:
         with open(USER_POST_FILE, 'a') as f:
-            f.write(json.dumps({"txt": txt, "img": img,
+            f.write(json.dumps({"query_text": txt,
+                                "query_img": img,
                                 "ip": request.remote_addr,
-                                "ua": request.user_agent.to_header(),
-                                "ts": datetime.datetime.now().isoformat()}) + "\n")
+                                "user_agent": request.user_agent.to_header(),
+                                "timestamp": datetime.datetime.now().isoformat()}) + "\n")
+
+
+@app.route("/vote", methods=["POST"])
+def vote():
+    with USER_VOTE_LOCK:
+        with open(USER_VOTE_FILE, 'a') as f:
+            f.write(json.dumps({"curr_text": request.form["text"],
+                                "curr_dist": request.form["dist"],
+                                "curr_img_url": request.form["img_url"],
+                                "query_text": request.form["query_text"],
+                                "query_img": request.form["query_img"],
+                                "vote": int(request.form["vote"]),
+                                "ip": request.remote_addr,
+                                "user_agent": request.user_agent.to_header(),
+                                "timestamp": datetime.datetime.now().isoformat()}) + "\n")
+
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 
 @app.route('/processing', methods=["POST"])
@@ -120,7 +138,6 @@ def processing():
         q = dict()
         q["dist"], = d
         q["text"] = u", ".join(unicode(_) for _ in dataset[idx]["text"])
-        q["tag"] = u", ".join(unicode(_) for _ in dataset[idx]["tag"])
         q["img_url"] = dataset[idx]["img_url"]
         near_obj.append(q)
 

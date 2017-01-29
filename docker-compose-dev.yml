@@ -19,4 +19,4 @@ services:
       service: webapp
     volumes:
       - "./logs/webapp-dev-post.json:/var/log/webapp-post.json"
-      - "./logs/webapp-dev-like.json:/var/log/webapp-like.json"
+      - "./logs/webapp-dev-vote.json:/var/log/webapp-vote.json"

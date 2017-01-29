@@ -53,7 +53,7 @@ def vote():
     with USER_VOTE_LOCK:
         with open(USER_VOTE_FILE, 'a') as f:
             f.write(json.dumps({"curr_text": request.form["text"],
-                                "curr_dist": request.form["dist"],
+                                "curr_dist": float(request.form["dist"]),
                                 "curr_img_url": request.form["img_url"],
                                 "query_text": request.form["query_text"],
                                 "query_img": request.form["query_img"],

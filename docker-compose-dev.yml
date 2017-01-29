@@ -17,3 +17,6 @@ services:
     extends:
       file: docker-compose-basic.yml
       service: webapp
+    volumes:
+      - "./logs/webapp-dev-post.json:/var/log/webapp-post.json"
+      - "./logs/webapp-dev-like.json:/var/log/webapp-like.json"

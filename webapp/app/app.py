@@ -4,6 +4,8 @@ import os
 import json
 import logging
 import random
+import datetime
+from multiprocessing import Lock
 import numpy as np
 import plotly.offline as py
 import plotly.graph_objs as go
@@ -16,6 +18,11 @@ from flask import Flask, render_template, request, redirect, Markup
 TIMEOUT_MS = 5000
 ARTM_PORT = 1349
 NN_PORT = 1350
+
+USER_POST_LOCK = Lock()
+USER_LIKE_LOCK = Lock()
+USER_POST_FILE = "/var/log/webapp-post.json"
+USER_LIKE_FILE = "/var/log/webapp-like.json"
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(message)s',
@@ -31,20 +38,29 @@ with open("dataset/topic_vectors.json") as infile:
 index_matr = np.array([_["topics"] for _ in dataset])
 
 
+def save_post_data(txt, img):
+    with USER_POST_LOCK:
+        with open(USER_POST_FILE, 'a') as f:
+            f.write(json.dumps({"txt": txt, "img": img,
+                                "ip": request.remote_addr,
+                                "ua": request.user_agent.to_header(),
+                                "ts": datetime.datetime.now().isoformat()}) + "\n")
+
+
 @app.route('/processing', methods=["POST"])
 def processing():
     logging.info(request.form)
 
     txt = request.form["search_text"]
     img = request.files.get("photo_img", None)
-    preds = []
+    img = base64.b64encode(img.read()) if img else None
+    save_post_data(txt, img)
 
+    preds = []
     context = zmq.Context()
 
     if img:
         logging.info("Image exists, go to inception")
-        img = img.read()
-
         nn_socket = context.socket(zmq.REQ)
         nn_socket.connect('tcp://image2pic-inception-v3:{}'.format(NN_PORT))
         nn_socket.setsockopt(zmq.LINGER, TIMEOUT_MS)
@@ -52,7 +68,7 @@ def processing():
         nn_poller.register(nn_socket, zmq.POLLIN)
 
         logging.info("send to nn")
-        nn_socket.send_json({"img_b64": base64.b64encode(img)})
+        nn_socket.send_json({"img_b64": img})
 
         if nn_poller.poll(TIMEOUT_MS):
             logging.info("nn poll ok, recv")
@@ -151,7 +167,7 @@ def processing():
         fd_ord.append(field_name)
 
     return render_template("processing.html", query_text=txt,
-                           img_data=base64.b64encode(img) if img else None,
+                           img_data=img,
                            data=fd,
                            data_order=fd_ord,
                            srch=near_obj)

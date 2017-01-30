@@ -18,6 +18,8 @@ services:
      - "/etc/letsencrypt/live/image2pic.tech/fullchain.pem:/etc/ssl/cert.pem:ro"
      - "/etc/letsencrypt/live/image2pic.tech/privkey.pem:/etc/ssl/domain.key:ro"
      - "./webapp/site-prod.conf:/etc/nginx/sites-available/site.conf:ro"
+     - "./logs/webapp-prod-post.json:/var/log/webapp-post.json"
+     - "./logs/webapp-prod-vote.json:/var/log/webapp-vote.json"
     ports:
      - "443:443"
 

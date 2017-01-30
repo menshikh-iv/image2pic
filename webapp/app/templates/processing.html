@@ -2,6 +2,7 @@
 <html lang="ru">
 {% include 'header.html' %}
 <link rel="stylesheet" type="text/css" href="static/css/style.css">
+<script src="static/js/script.js" type="text/javascript"></script>
 
 <body>
 {% include 'menu.html' %}
@@ -20,12 +21,12 @@
         <tbody>
         <tr>
             <td>Текст</td>
-            <td>{{ query_text }}</td>
+            <td id="query_text">{{ query_text }}</td>
         </tr>
         <tr>
             <td>Изображение</td>
             <td>{% if img_data %}
-                    <img src="data:image/png;base64,{{img_data}}"/>
+                    <img id="query_img" src="data:image/png;base64,{{img_data}}"/>
                 {% endif %}
             </td>
         </tr>
@@ -59,17 +60,24 @@
             <tr>
                 <th>Расстояние</th>
                 <th>Текст</th>
-                <th>Теги</th>
                 <th>Изображение</th>
+                <th>Кнопки</th>
             </tr>
         </thead>
         <tbody>
         {% for _ in srch %}
             <tr>
-                <td>{{ _["dist"] }}</td>
-                <td>{{ _["text"] }}</td>
-                <td>{{ _["tag"] }}</td>
-                <td><img src="{{_["img_url"]}}"/></td>
+                <td id="dist">{{ _["dist"] }}</td>
+                <td id="text">{{ _["text"] }}</td>
+                <td><img id="img_url" src="{{_["img_url"]}}"/></td>
+                <td>
+                    <button type="button" class="btn btn-success btn-number" onclick="send_vote(this, 1)">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-number" onclick="send_vote(this, -1)">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                </td>
             </tr>
 
         {% endfor %}

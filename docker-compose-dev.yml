@@ -6,9 +6,9 @@ services:
       service: inception-v3
 
   artm-service:
-    build:
-      args:
-        - loglevel=0
+    #build:
+    #  args:
+    #    - loglevel=0
     extends:
       file: docker-compose-basic.yml
       service: artm-service
@@ -17,3 +17,6 @@ services:
     extends:
       file: docker-compose-basic.yml
       service: webapp
+    volumes:
+      - "./logs/webapp-dev-post.json:/var/log/webapp-post.json"
+      - "./logs/webapp-dev-vote.json:/var/log/webapp-vote.json"

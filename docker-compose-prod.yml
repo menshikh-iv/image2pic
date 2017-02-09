@@ -23,7 +23,7 @@ services:
      - "./webapp/site-prod.conf:/etc/nginx/sites-available/site.conf:ro"
      - "./logs/webapp-prod-post.json:/var/log/webapp-post.json"
      - "./logs/webapp-prod-vote.json:/var/log/webapp-vote.json"
-     - "/var/log/nginx/image2pic:/var/log/nginx/app"
+     - "/var/log/nginx/image2pic:/var/log/nginx/"
      - "/var/log/uwsgi/image2pic:/var/log/uwsgi/app"
      - "/var/log/supervisor/image2pic:/var/log/supervisor"
     ports:

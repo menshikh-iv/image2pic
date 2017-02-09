@@ -4,75 +4,82 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>540</x>
-      <y>333</y>
-      <w>108</w>
+      <x>423</x>
+      <y>261</y>
+      <w>153</w>
       <h>36</h>
     </coordinates>
-    <panel_attributes>*Изображение*</panel_attributes>
+    <panel_attributes>fontsize=18
+*Изображение*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>702</x>
-      <y>333</y>
-      <w>108</w>
+      <x>612</x>
+      <y>261</y>
+      <w>144</w>
       <h>36</h>
     </coordinates>
-    <panel_attributes>*Комментарий*</panel_attributes>
+    <panel_attributes>fontsize=18
+*Комментарий*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>594</x>
-      <y>270</y>
-      <w>171</w>
+      <x>486</x>
+      <y>189</y>
+      <w>216</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>Элемент фотоальбома</panel_attributes>
+    <panel_attributes>fontsize=19
+Элемент фотоальбома</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>666</x>
-      <y>288</y>
-      <w>108</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>100.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>585</x>
-      <y>288</y>
-      <w>108</w>
-      <h>63</h>
+      <y>207</y>
+      <w>126</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;50.0;100.0;10.0</additional_attributes>
+    <additional_attributes>120.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>207</y>
+      <w>117</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;60.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>414</y>
-      <w>162</w>
-      <h>36</h>
+      <x>333</x>
+      <y>342</y>
+      <w>207</w>
+      <h>63</h>
     </coordinates>
-    <panel_attributes>Дискретный описатель 
-изображения</panel_attributes>
+    <panel_attributes>halign=center
+fontsize=17
+Дискретный описатель 
+изображения
+--
+Inception-v3 + "box-cox"</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>513</x>
-      <y>360</y>
+      <x>423</x>
+      <y>288</y>
       <w>99</w>
       <h>72</h>
     </coordinates>
@@ -82,65 +89,77 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>657</x>
-      <y>414</y>
-      <w>90</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>Токены</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>801</x>
-      <y>414</y>
-      <w>90</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>Хэштеги</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>693</x>
-      <y>360</y>
-      <w>72</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;20.0;60.0;20.0;60.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>738</x>
-      <y>360</y>
-      <w>126</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>120.0;60.0;120.0;20.0;10.0;20.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>576</x>
-      <y>522</y>
-      <w>207</w>
+      <x>567</x>
+      <y>342</y>
+      <w>117</w>
       <h>63</h>
     </coordinates>
-    <panel_attributes>Тематический вектор
+    <panel_attributes>halign=center
+fontsize=17
+Токены
 --
-Скрытая случайная величина</panel_attributes>
+NLTK 
+pymorphy2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>414</x>
-      <y>396</y>
+      <x>711</x>
+      <y>342</y>
+      <w>90</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>halign=center
+fontsize=17
+Хэштеги
+--
+NLTK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>288</y>
+      <w>108</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;20.0;100.0;20.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>288</y>
+      <w>99</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;60.0;90.0;20.0;10.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>477</x>
+      <y>468</y>
+      <w>234</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>halign=center
+fontsize=18
+Тематический вектор
+--
+BigARTM
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>324</x>
+      <y>324</y>
       <w>522</w>
       <h>207</h>
     </coordinates>
@@ -151,71 +170,164 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>747</x>
-      <y>432</y>
-      <w>117</w>
-      <h>108</h>
+      <x>684</x>
+      <y>396</y>
+      <w>108</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
-         φ_tags</panel_attributes>
-    <additional_attributes>10.0;100.0;110.0;10.0</additional_attributes>
+fontsize=19
+φ_tags</panel_attributes>
+    <additional_attributes>10.0;80.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>693</x>
-      <y>432</y>
-      <w>81</w>
-      <h>108</h>
+      <x>594</x>
+      <y>396</y>
+      <w>99</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
+fontsize=19
 φ_tokens</panel_attributes>
-    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>522</x>
-      <y>441</y>
-      <w>126</w>
-      <h>99</h>
+      <x>432</x>
+      <y>396</y>
+      <w>99</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
-       φ_classes</panel_attributes>
-    <additional_attributes>120.0;90.0;10.0;10.0</additional_attributes>
+</panel_attributes>
+    <additional_attributes>90.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>612</x>
-      <y>657</y>
-      <w>135</w>
-      <h>36</h>
+      <x>459</x>
+      <y>576</y>
+      <w>171</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=.
+fontsize=18
 Поисковый индекс</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>666</x>
-      <y>576</y>
+      <x>540</x>
+      <y>513</y>
       <w>27</w>
-      <h>99</h>
+      <h>81</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>234</y>
+      <x>270</x>
+      <y>162</y>
       <w>342</w>
       <h>459</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>280.0;490.0;10.0;490.0;10.0;10.0;360.0;10.0;360.0;40.0</additional_attributes>
+    <additional_attributes>210.0;490.0;10.0;490.0;10.0;10.0;360.0;10.0;360.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>279</x>
+      <y>180</y>
+      <w>144</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>fontsize=18
+Меньших Иван</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>765</x>
+      <y>180</y>
+      <w>144</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>fontsize=18
+Штех Геннадий</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>621</y>
+      <w>315</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;&gt;&gt;&gt;
+</panel_attributes>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>630</x>
+      <y>576</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>valign=center
+fontsize=25
+https://image2pic.tech
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>261</x>
+      <y>117</y>
+      <w>657</w>
+      <h>549</h>
+    </coordinates>
+    <panel_attributes>fontsize=21
+Image2pic
+Semantic image search on ARTM
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>477</x>
+      <y>423</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>fontsize=19
+  φ_classes
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>747</x>
+      <y>639</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Demo
+
+layer=1</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

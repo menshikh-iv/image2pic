@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>260</y>
+      <w>290</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>*Web-docker-service*
+--
+handle_connection(user)
+search(image, text)
+collect_submission(assessment)
+--
+nginx+uwsgi+flask
+scipy
+--
++Index file(topic_vector, id)
++Content(id, image, normalized post)
++ssl certs(prod-only)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>530</y>
+      <w>230</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>*NN-docker-service*
+--
+transform_image(base64_img)
+--
+keras
+--
++inception-v3 model</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>560</y>
+      <w>320</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>*ARTM-docker-service*
+--
+get_topic_and_modalities(image_vec, text)
+--
+BigARTM
+--
++ 
+
+
+
+
+   
++inception-class-names</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>310</x>
+      <y>220</y>
+      <w>640</w>
+      <h>540</h>
+    </coordinates>
+    <panel_attributes>fontsize=20
+*image2pic docker-compose*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>420</y>
+      <w>130</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= REP
+m2=REQ
+ZMQ Socket</panel_attributes>
+    <additional_attributes>10.0;110.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>620</x>
+      <y>420</y>
+      <w>120</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=REP
+m2= REQ
+ZMQ Socket</panel_attributes>
+    <additional_attributes>30.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>620</x>
+      <y>630</y>
+      <w>120</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>artm-model
+--
+   - φ-tokens
+    - φ-classes
+- φ-tags</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>590</x>
+      <y>490</y>
+      <w>60</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

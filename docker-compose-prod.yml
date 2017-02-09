@@ -1,16 +1,19 @@
 version: "2"
 services:
   inception-v3:
+    restart: always
     extends:
       file: docker-compose-basic.yml
       service: inception-v3
 
   artm-service:
+    restart: always
     extends:
       file: docker-compose-basic.yml
       service: artm-service
 
   webapp:
+    restart: always
     extends:
       file: docker-compose-basic.yml
       service: webapp

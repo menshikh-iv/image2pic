@@ -92,5 +92,16 @@
 <!-- hack for correct plot -->
 <script>
     $("#spoiler").css("display", "none");
+
+    function spoiler() {
+        var s = $("#spoiler");
+        if (s.css("display") == "none") {
+            s.css("display", "");
+        }
+        else {
+            s.css("display", "none");
+        }
+    }
+
 </script>
 </html>

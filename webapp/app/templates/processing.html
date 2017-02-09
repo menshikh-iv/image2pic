@@ -35,6 +35,8 @@
     <br/>
     <center><h1> Что у нас есть </h1></center>
     <br/>
+    <button class="btn btn-primary" type="button" onclick="spoiler()">Показать/скрыть</button>
+    <div id="spoiler" style='display:""'>
     <h2> ARTM </h2>
      <table class="table">
         <thead>
@@ -53,6 +55,7 @@
 
         </tbody>
      </table>
+     </div>
     <br/>
     <h2> TOP10 похожих </h2>
     <table class="table">
@@ -85,4 +88,9 @@
      </table>
 </div>
 </body>
+
+<!-- hack for correct plot -->
+<script>
+    $("#spoiler").css("display", "none");
+</script>
 </html>

@@ -33,3 +33,13 @@ function send_vote(self, vote){
         }
     });
 }
+
+function spoiler() {
+    var s = $("#spoiler");
+    if (s.css("display") == "none") {
+        s.css("display", "");
+    }
+    else {
+        s.css("display", "none");
+    }
+}

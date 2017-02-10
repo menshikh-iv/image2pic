@@ -43,7 +43,7 @@ valign=center
     <coordinates>
       <x>480</x>
       <y>420</y>
-      <w>80</w>
+      <w>90</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
@@ -79,7 +79,7 @@ valign=center
     <coordinates>
       <x>370</x>
       <y>310</y>
-      <w>100</w>
+      <w>110</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;

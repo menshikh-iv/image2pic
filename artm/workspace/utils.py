@@ -32,15 +32,15 @@ def get_text_processor():
     txt_cleaner = build_text_cleaner()
     tokenizer = RegexpTokenizer('[\w\d]+', gaps=False)
     stemmer = PorterStemmer()
-    ru_stemmer = RussianStemmer()
+    #ru_stemmer = RussianStemmer()
     morph = MorphAnalyzer()
 
     def inner(text):
         tokens = tokenizer.tokenize(txt_cleaner(unicode(text)))
         for token in tokens:
             if all([c in u'1234567890йцукенгшщзхъэждлорпавыфячсмитьбю+-*/-_="$' for c in token]):
-                yield ru_stemmer.stem(token)
-                # yield morph.parse(token)[0].normal_form
+                # yield ru_stemmer.stem(token)
+                yield morph.parse(token)[0].normal_form
             else:
                 yield stemmer.stem(token)
 
@@ -60,10 +60,11 @@ def apply_box_cox(vector):
     return v
 
 
-def sample_from(vector):
+def sample_from(vector, sample_size=442):
+    rnd = np.random.RandomState(seed=42)
     try:
         v = apply_box_cox(vector)
-        return Counter(dict((k, v) for k, v in enumerate(np.random.multinomial(144, v.reshape(-1) * 0.99999)) if v > 0))
+        return Counter(dict((k, v) for k, v in enumerate(rnd.multinomial(sample_size, v.reshape(-1) * 0.99999)) if v > 0))
     except Exception as e:
         print vector.sum(), e
 

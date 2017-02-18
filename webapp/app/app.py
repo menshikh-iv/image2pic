@@ -137,7 +137,7 @@ def processing():
     for (idx, d) in distances:
         q = dict()
         q["dist"], = d
-        q["text"] = u", ".join(unicode(_) for _ in dataset[idx]["text"])
+        q["text"] = dataset[idx]["text"]
         q["img_url"] = dataset[idx]["img_url"]
         near_obj.append(q)
 

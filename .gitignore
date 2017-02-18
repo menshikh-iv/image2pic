@@ -4,3 +4,4 @@ artm/workspace/bigartm*
 *.log
 *.pyc
 *.png
+logs/*

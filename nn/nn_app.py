@@ -41,7 +41,13 @@ def main():
 
     while True:
         img = socket.recv_json()["img_b64"]
-        res, = get_inception_predictions(base64.b64decode(img), model)
+
+        # noinspection PyBroadException
+        try:
+            res, = get_inception_predictions(base64.b64decode(img), model)
+        except Exception:
+            logging.error("some shift", exc_info=True)
+            continue
         logging.info("Send result")
         socket.send_json({"vector": map(float, res.tolist())})
 

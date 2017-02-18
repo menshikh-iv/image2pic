@@ -6,11 +6,13 @@
 <body>
 {% include 'menu.html' %}
 <div class="container">
+    <h3>Поищем вам картинок по образцу и/или описанию</h3>
+    <p>(подробные инструкции смотрите <a href="/about">там</a>)</p>
     <div class="jumbotron">
-        <h3>введите текст</h3>
+        <h3>введите описание</h3>
         <form method="post" action="/processing" id="dataform" enctype="multipart/form-data">
-            <input name="search_text" class="form-control input-lg" id="myInput" placeholder="Где же котлета?" type="text">
-            <h3>и/или прикрепите изображение</h3>
+            <input name="search_text" class="form-control input-lg" id="myInput" maxlength="20000" placeholder="В целях проведения выходных дней с пользой для души и тела мы решили сходить в поход. По плану это был поход не на выживание, а поход для отдыха, развлечения и рыбалки. Пунктом назначения было выбрано место между рекой (Сура) и озерно-болотистой местностью. Добраться туда можно только доехав на электричке и пройдя 15 км лесом вдоль реки." type="text">
+            <h3>и/или изображение-образец</h3>
             <div style='position:relative;'>
                  <a class='btn btn-default btn-file' href='javascript:;'>
                         Загрузить<input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
@@ -18,7 +20,6 @@
                                         onchange='$("span#upload-file-info").text($(this).val().replace("C:\\fakepath\\", ""))'
                                         accept="image/jpeg,image/png,image/bmp,.jpeg,.png,.bmp">
                  </a>
-                 &nbsp;
                  <span class='label label-info' id="upload-file-info"></span>
             </div>
             <h3>

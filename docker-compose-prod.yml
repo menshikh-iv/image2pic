@@ -1,16 +1,19 @@
 version: "2"
 services:
   inception-v3:
+    restart: always
     extends:
       file: docker-compose-basic.yml
       service: inception-v3
 
   artm-service:
+    restart: always
     extends:
       file: docker-compose-basic.yml
       service: artm-service
 
   webapp:
+    restart: always
     extends:
       file: docker-compose-basic.yml
       service: webapp
@@ -20,6 +23,9 @@ services:
      - "./webapp/site-prod.conf:/etc/nginx/sites-available/site.conf:ro"
      - "./logs/webapp-prod-post.json:/var/log/webapp-post.json"
      - "./logs/webapp-prod-vote.json:/var/log/webapp-vote.json"
+     - "/var/log/nginx/image2pic:/var/log/nginx/"
+     - "/var/log/uwsgi/image2pic:/var/log/uwsgi/app"
+     - "/var/log/supervisor/image2pic:/var/log/supervisor"
     ports:
      - "443:443"
 

@@ -138,7 +138,7 @@ def processing():
         q = dict()
         q["dist"], = d
         q["text"] = dataset[idx]["text"]
-        q["img_url"] = dataset[idx]["img_url"]
+        q["img_url"] = dataset[idx]["img_url"].replace("/pp.vk.me/", "/pp.userapi.com/")
         near_obj.append(q)
 
     field_name = u"Темы"

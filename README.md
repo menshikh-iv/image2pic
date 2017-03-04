@@ -1,5 +1,5 @@
 # image2pic
-
+![logo](https://raw.githubusercontent.com/menshikh-iv/image2pic/master/webapp/app/static/images/i2p-logo.jpg)
 ## Image topic modeling.
 
 We are two students: [Ivan Menshikh](https://github.com/menshikh-iv) && [Gennady Shtekh](https://github.com/ShT3ch).
@@ -11,14 +11,14 @@ Long story short: ARTM allows us to tie different discrete features of "document
  - Search pictures for given descriptions(works badly now)
 
 The Plan:
- - [ ] To collect posts with photo and text description(long enough)
- - [ ] Clean them from ad posts
- - [ ] Find a way to build discrete image descriptors(based on inception-v3 now)
- - [ ] Build a textual preprocessing pipeline(based on nltk, pymorphy2 and some custom solutions, now it supports english and russian via stemming)
- - [ ] Combine text and image date together with topic modeling framework called BigARTM
- - [ ] Build a search index for fast search in semantic space(It is simple linear search now)
- - [ ] Build a demo website with our search
- - [ ] Pack the app into Docker-Compose
+ - [x] To collect posts with photo and text description(long enough)
+ - [x] Clean them from ad posts
+ - [x] Find a way to build discrete image descriptors(based on inception-v3 now)
+ - [x] Build a textual preprocessing pipeline(based on nltk, pymorphy2 and some custom solutions, now it supports english and russian via stemming)
+ - [x] Combine text and image date together with topic modeling framework called BigARTM
+ - [x] Build a search index for fast search in semantic space(It is simple linear search now)
+ - [x] Build a demo website with our search
+ - [x] Pack the app into Docker-Compose
 
 
  We are almost done but we need to crawl more data for finer tuning of the model.
